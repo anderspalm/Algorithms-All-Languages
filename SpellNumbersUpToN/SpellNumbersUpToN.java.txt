@@ -1,0 +1,288 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+/**
+ * Created by ander on 12/8/2016.
+ */
+public class OneToN {
+
+    public static String mSplitInt;
+    public static String mFinalNum;
+    public static int number;
+
+    public static void main(String[] args) {
+        int[] array = new int[]{0,1,12,123,1234,12345,123456,1234567,12345678,123456789};
+        mSplitInt = "";
+        oneToNMethod(array);
+    }
+
+    public static void oneToNMethod(int[] array){
+        ArrayList<Integer> indNumArray = new ArrayList();
+        String number = "";
+
+        for (int i = 0; i < array.length; i++ ){
+            indNumArray.clear();
+            mSplitInt = String.valueOf(array[i]);
+            mFinalNum = "";
+
+            for (int j = 0; j < mSplitInt.length(); j ++){
+                number = String.valueOf(mSplitInt.charAt(j));
+                indNumArray.add(Integer.valueOf(number));
+            }
+
+            switch (indNumArray.size()){
+                case 1:
+                    oneToNine(array[i]);
+                    System.out.println(indNumArray.size() + ": " + mFinalNum);
+                    break;
+                case 2:
+                    twoFigures(indNumArray,0);
+                    System.out.println(indNumArray.size() + ": " + mFinalNum);
+                    break;
+                case 3:
+                    threeFigures(indNumArray,0);
+                    System.out.println(indNumArray.size() + ": " + mFinalNum);
+                    break;
+                case 4:
+                    oneToTenThou(indNumArray,0);
+                    System.out.println(indNumArray.size() + ": " + mFinalNum);
+                    break;
+                case 5:
+                    tenToNinetyNineThou(indNumArray,0);
+                    System.out.println(indNumArray.size() + ": " + mFinalNum);
+                    break;
+                case 6:
+                    hundThou(indNumArray,0);
+                    System.out.println(indNumArray.size() + ": " + mFinalNum);
+                    break;
+                case 7:
+                    oneToTenMillion(indNumArray,0);
+                    System.out.println(indNumArray.size() + ": " + mFinalNum);
+                    break;
+                case 8:
+                    tenToNinetyNineMillion(indNumArray,0);
+                    System.out.println(indNumArray.size() + ": " + mFinalNum);
+                    break;
+                case 9:
+                    hundMillion(indNumArray,0);
+                    System.out.println(indNumArray.size() + ": " + mFinalNum);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public static void oneToTenThou(ArrayList<Integer> num, int start){
+        oneToNine(num.get(start));
+        mFinalNum += "thouand, ";
+        threeFigures(num,1);
+    }
+
+    public static void tenToNinetyNineThou(ArrayList<Integer> num, int start){
+        twoFigures(num,start);
+        mFinalNum += "thousand, ";
+        threeFigures(num,2);
+    }
+
+    public static void hundThou(ArrayList<Integer> num, int start){
+        threeFigures(num,start);
+        twoFigures(num,1);
+        mFinalNum += "thousand, ";
+        threeFigures(num,3);
+    }
+
+    public static void oneToTenMillion(ArrayList<Integer> num, int start){
+        oneToNine(num.get(start));
+        mFinalNum += "million ";
+        threeFigures(num,1);
+        mFinalNum += "thousand, ";
+        threeFigures(num,4);
+    }
+
+    public static void tenToNinetyNineMillion(ArrayList<Integer> num, int start){
+        twoFigures(num,start);
+        mFinalNum += "million ";
+        threeFigures(num,2);
+        mFinalNum += "thousand, ";
+        threeFigures(num,5);
+    }
+
+    public static void hundMillion(ArrayList<Integer> num, int start){
+        threeFigures(num,start);
+        mFinalNum += "milion ";
+        threeFigures(num,3);
+        mFinalNum += "thousand, ";
+        threeFigures(num,6);
+    }
+
+    public static void threeFigures(ArrayList<Integer> num,int start){
+        int startIndex = start;
+
+        switch (num.get(startIndex)){
+            case 1:
+                mFinalNum += "one hundred and ";
+                twoFigures(num,startIndex+1);
+                break;
+            case 2:
+                mFinalNum += "two hundred and ";
+                twoFigures(num,startIndex+1);
+                break;
+            case 3:
+                mFinalNum += "three hundred and ";
+                twoFigures(num,startIndex+1);
+                break;
+            case 4:
+                mFinalNum += "four hundred and ";
+                twoFigures(num,startIndex+1);
+                break;
+            case 5:
+                mFinalNum += "five hundred and ";
+                twoFigures(num,startIndex+1);
+                break;
+            case 6:
+                mFinalNum += "six hundred and ";
+                twoFigures(num,startIndex+1);
+                break;
+            case 7:
+                mFinalNum += "seven hundred and ";
+                twoFigures(num,startIndex+1);
+                break;
+            case 8:
+                mFinalNum += "eight hundred and ";
+                twoFigures(num,startIndex+1);
+                break;
+            case 9:
+                mFinalNum += "nine hundred and ";
+                twoFigures(num,startIndex+1);
+                break;
+        }
+    }
+
+    public static void twoFigures(ArrayList<Integer> num,int start){
+        number = start;
+        if (num.get(number) == 1){
+            number += 1;
+            switch (num.get(number)){
+                case 0:
+                    System.out.println("ten");
+                    break;
+                case 1:
+                    mFinalNum += "eleven ";
+                    break;
+                case 2:
+                    mFinalNum += "twelve ";
+                    break;
+                case 3:
+                    mFinalNum += "thirteen ";
+                    break;
+                case 4:
+                    mFinalNum += "fourteen ";
+                    break;
+                case 5:
+                    mFinalNum += "fifteen ";
+                    break;
+                case 6:
+                    mFinalNum += "sixteen ";
+                    break;
+                case 7:
+                    mFinalNum += "seventeen ";
+                    break;
+                case 8:
+                    mFinalNum += "eighteen ";
+                    break;
+                case 9:
+                    mFinalNum += "nineteen ";
+                    break;
+            }
+        }
+        else {
+            switch (num.get(number)){
+                case 2:
+                    number += 1;
+                    mFinalNum += "twenty ";
+                    oneToNine(num.get(number));
+                    break;
+
+                case 3:
+                    number += 1;
+                    mFinalNum += "thirty ";
+                    oneToNine(num.get(number));
+                    break;
+
+                case 4:
+                    number += 1;
+                    mFinalNum += "forty ";
+                    oneToNine(num.get(number));
+                    break;
+
+                case 5:
+                    number += 1;
+                    mFinalNum += "fifty ";
+                    oneToNine(num.get(number));
+                    break;
+
+                case 6:
+                    number += 1;
+                    mFinalNum += "sixty ";
+                    oneToNine(num.get(number));
+                    break;
+
+                case 7:
+                    number += 1;
+                    mFinalNum += "seventy ";
+                    oneToNine(num.get(number));
+                    break;
+
+                case 8:
+                    number += 1;
+                    mFinalNum += "eighty ";
+                    oneToNine(num.get(number));
+                    break;
+
+                case 9:
+                    number += 1;
+                    mFinalNum += "ninety ";
+                    oneToNine(num.get(number));
+                    break;
+            }
+        }
+    }
+
+    public static void oneToNine(int num){
+        switch (num){
+            case 0:
+                mFinalNum += "zero";
+                break;
+            case 1:
+                mFinalNum += "one ";
+                break;
+            case 2:
+                mFinalNum += "two ";
+                break;
+            case 3:
+                mFinalNum += "three ";
+                break;
+            case 4:
+                mFinalNum += "four ";
+                break;
+            case 5:
+                mFinalNum += "five ";
+                break;
+            case 6:
+                mFinalNum += "six ";
+                break;
+            case 7:
+                mFinalNum += "seven ";
+                break;
+            case 8:
+                mFinalNum += "eight ";
+                break;
+            case 9:
+                mFinalNum += "nine ";
+                break;
+            case 10:
+                break;
+        }
+    }
+}
