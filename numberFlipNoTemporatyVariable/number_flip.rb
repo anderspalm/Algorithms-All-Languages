@@ -1,6 +1,6 @@
 =begin
-For reusability, I have used a proc as this is part of a larger sbset of algorithyms I have been working on. 
-A Proc offers a useful way of reusing methods with different block implementations.
+For reusability, I have used a proc as this is part of a larger set of algorithms
+Proc's offer a useful way of reusing methods with different block implementations.
 =end
 
 number_flip_proc = Proc.new { |item|
