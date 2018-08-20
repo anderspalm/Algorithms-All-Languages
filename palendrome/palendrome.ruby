@@ -1,5 +1,7 @@
-// For reusability, I have used a proc as this is part of a larger sbset of algorithyms I have been working on. 
-// Proc's offer a useful way of reusing methods with different block implementations.
+=begin
+For reusability, I have used a proc as this is part of a larger set of algorithms
+Proc's offer a useful way of reusing methods with different block implementations.
+=end
 
 palindrome_proc = Proc.new { |input_array_item|
   first_half = input_array_item[0..(input_array_item.length/2)]
